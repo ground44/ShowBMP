@@ -4,7 +4,7 @@ obj = $(src:.cpp=.o)
 all: show
 	
 CC=g++
-CXXFLAGS= -std=c++0x 
+CXXFLAGS= -std=c++0x
 LDLIBS=-lglfw -lGL -lGLU -lGLEW
 
 debug: CXXFLAGS+= -DDEBUG -g

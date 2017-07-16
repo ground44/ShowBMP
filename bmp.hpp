@@ -1,16 +1,45 @@
+#pragma once
+#pragma pack(2)
+
+
+struct FILEHEADER{
+	unsigned char headerField[2];
+	unsigned int bitmapSize;
+	unsigned short reserved1;
+	unsigned short reserved2;
+	unsigned int offset;
+};
+
+struct DIBHEADER{
+	unsigned int headerSize;
+	signed int width;
+	signed int height;
+	unsigned short noColorPlanes;
+	unsigned short noBytesPerPixel;
+	unsigned int compression;
+	unsigned int imageSize;
+	signed int horResolution;
+	signed int verResolution;
+	unsigned int noColorsInPalette;
+	unsigned int noImportantColors;
+};
+
 class bmp{
 	private:
 		char *path;
-		int size;
-		short reserved1;
-		short reserved2;
-		int offset;
+		unsigned char *buffer;
+		int fileSize;
+		
+		
+		//header info
+		FILEHEADER fileHeader;
+		DIBHEADER dibHeader;
 
-		//bool openFile();
-		//bool loadFileHeader();
-		//bool loadDIB();
-		//bool loadColorTable();
-
+	
 	public:
-		bmp(char *path);
+		bmp();
+		bool openFile(char *path);
+		bool readFileHeader();
+		bool readDIBHeader();
 };
+
