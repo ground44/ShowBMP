@@ -41,5 +41,7 @@ class bmp{
 		bool openFile(char *path);
 		bool readFileHeader();
 		bool readDIBHeader();
+		int getWidth();
+		int getHeight();
 };
 

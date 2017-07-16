@@ -75,3 +75,11 @@ bool bmp::readDIBHeader(){
 }
 
 
+int bmp::getWidth(){
+	return dibHeader.width;
+}
+
+int bmp::getHeight(){
+	return dibHeader.height;
+}
+
