@@ -18,10 +18,6 @@ bool glInit(){
 		goto Exit;
 	}
 
-	if(glewInit()!=GLEW_OK){
-		goto Exit;
-	}
-
 	result=true;
 	Exit:
 	return result;
@@ -38,11 +34,19 @@ bool createWindow(char *title,int width, int height){
 	
 	glfwMakeContextCurrent(window); 
 
-	if(window!=NULL)result=true;
+	if(window==NULL)goto Exit;
+
+	if(glewInit()!=GLEW_OK){ //init the current context for further use
+		goto Exit;
+	}
+
+	result=true;
+	Exit:
 	return result;
 }
 
 void imageShow(){
+	
 	while(glfwWindowShouldClose(window)==0){
 		glfwSwapBuffers(window);
 		glfwPollEvents();
